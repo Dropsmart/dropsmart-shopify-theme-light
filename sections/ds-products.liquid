@@ -1,0 +1,815 @@
+<div
+  id="{{section.settings.section-id}}"
+  style="
+    background: {{section.settings.background-color}} 
+      {% if section.settings.hasBackground %} 
+         url('{{section.settings.background-image | img_url: 'master'}}') no-repeat center center; background-size: cover 
+      {% endif %}
+    ;"
+ class="lp-products"
+>
+  <div class="Container {{section.settings.padding}} {{section.settings.no-padding}}">
+    <div class="content flex flex-column justify-{{section.settings.align-content}}">
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {% when 'h1' %}
+               {%- include 'component-h1', 
+                 fontColor: block.settings.font-color, 
+                 fontSize: block.settings.font-size, 
+                 fontFamily: block.settings.title-font, 
+                 align: block.settings.align,
+                 fontWeight: block.settings.font-weight,
+                 text: block.settings.text
+               -%}
+
+          {% when 'paragraph' %}
+             {%- include 'component-paragraph', 
+                 fontColor: block.settings.font-color, 
+                 fontSize: block.settings.font-size, 
+                 fontFamily: block.settings.font-family, 
+                 align: block.settings.align,
+                 fontWeight: block.settings.font-weight,
+                 text: block.settings.text
+               -%}
+
+            {% when 'html' %}
+             {{block.settings.custom-html}}
+
+          {%- endcase -%}  
+        {%- endfor -%}
+    </div>
+    <div class="content flex justify-center">
+       {%- for block in section.blocks -%}
+          {% case block.type %}
+            {% when 'collection' %}
+              
+            {%- assign collection = collections[block.settings.collection] -%}
+      
+                {%- if collection != empty -%}
+
+                    {%- for product in collection.products -%}
+                        {%- assign isBest = 0 %}
+                        {% if forloop.index == section.settings.isBest %}
+                            {%- assign isBest = 1 %}
+                        {% endif %}
+                      {% include 'component-product', product: product, isBest: isBest  %}
+                    {%- endfor -%}
+       
+            {%- endif -%}
+
+         {%- endcase -%}  
+       {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Collection",
+  "class": "lp-collection",
+  "max_blocks": 10,
+  "settings": [
+      {
+        "id": "section-id",
+        "type": "text",
+        "label": "Section"
+      },
+      {
+        "id": "border-radius",
+        "type": "number",
+        "label": "Border Radius",
+        "default": 0
+      },
+      {
+        "id": "show-description",
+        "type": "checkbox",
+        "label": "Show description on mobile",
+        "default": true
+      },
+      {
+        "id": "has-image",
+        "type": "checkbox",
+        "label": "Has Image",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "background-color",
+        "label": "Background Color",
+        "default": "#f2f4f5"
+      },
+      {
+        "id": "hasBackground",
+        "type": "checkbox",
+        "label": "Use Backgound Image",
+        "default": false
+      },
+      {
+        "id": "background-image",
+        "type": "image_picker",
+        "label": "Background image"
+      },
+      {
+         "type": "select",
+         "id": "padding",
+         "options": [
+            { "value": "regular-small", "label": "Regular Small"},
+            { "value": "space-around-small", "label": "Space Around Small"},
+            { "value": "regular", "label": "Regular"},
+            { "value": "space-around", "label": "Space Around"},
+            { "value": "regular-large", "label": "Regular Large"},
+            { "value": "space-around-large", "label": "Space Around Large"}
+         ],
+         "default": "regular",
+         "label": "Section Padding"
+      },
+      {
+          "type": "select",
+          "id": "no-padding",
+          "options": [
+            { "value": "no-padding-bottom", "label": "Remove Bottom"},
+            { "value": "no-padding-top", "label": "Remove Top"},
+            { "value": "no-padding", "label": "Remove Both"},
+            { "value": "regular", "label": "Don't Remove"}
+          ],
+          "default": "regular",
+          "label": "Remove Padding"
+      },
+      {
+          "type": "color",
+          "id": "primary-background-color",
+          "label": "Primary Background Color",
+          "default": "#FFFFFF"
+      },
+      {
+          "type": "color",
+          "id": "secondary-background-color",
+          "label": "Secondary Background Color",
+          "default": "#FFFFFF"
+      },
+      {
+          "type": "header",
+          "content": "Best Deal"
+      },
+      {
+        "id": "isBest",
+        "type": "number",
+        "label": "Best Deal Index",
+        "default": 1
+      },
+      {
+        "id": "best-deal",
+        "type": "text",
+        "label": "Best Deal Text",
+        "default": "Best Deal"
+      },
+      {
+         "type": "color",
+         "id": "best-deal-font-color",
+         "label": "Best Deal Font Color",
+         "default": "#FFF"
+      },
+      {
+         "type": "color",
+         "id": "best-deal-background-color",
+         "label": "Best Deal Background Color",
+         "default": "#000"
+      },
+      {
+          "type": "select",
+          "id": "best-deal-font",
+          "options": [
+            { "value": "Roboto", "label": "Roboto"},
+            { "value": "Cairo", "label": "Cairo"},
+            { "value": "Raleway", "label": "Raleway"},
+            { "value": "Ubuntu", "label": "Ubuntu"},
+            { "value": "Titillium", "label": "Titillium Web"},
+            { "value": "Museo", "label": "Museo"},
+            { "value": "Poppins", "label": "Poppins"}
+          ],
+          "default": "Raleway",
+          "label": "Best Deal Font Family"
+      },
+      {
+          "type": "select",
+          "id": "best-deal-font-size",
+          "options": [
+             { "value": "1", "label": "Small"},
+             { "value": "1.5", "label": "Medium"},
+             { "value": "2", "label": "Large"},
+             { "value": "3", "label": "Extra Large"}
+          ],
+          "default": "1.5",
+          "label": "Best Deal Font Size"
+      },
+      {
+          "type": "header",
+          "content": "Title"
+      },
+      {
+          "id": "has-title",
+          "type": "checkbox",
+          "label": "Title",
+          "default": true
+      },
+      {
+        "type": "color",
+        "id": "title-font-color",
+        "label": "Font Color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "bd-title-font-color",
+        "label": "Best Deal Font Color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "title-background-color",
+        "label": "Background Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "bd-title-background-color",
+        "label": "Best Deal background Color",
+        "default": "#000"
+      },
+      {
+        "type": "select",
+        "id": "title-font",
+        "options": [
+          { "value": "Roboto", "label": "Roboto"},
+          { "value": "Cairo", "label": "Cairo"},
+          { "value": "Raleway", "label": "Raleway"},
+          { "value": "Ubuntu", "label": "Ubuntu"},
+          { "value": "Titillium", "label": "Titillium Web"},
+          { "value": "Museo", "label": "Museo"},
+          { "value": "Poppins", "label": "Poppins"}
+        ],
+        "default": "Raleway",
+        "label": "Font Family"
+      },
+      {
+          "type": "select",
+          "id": "title-font-size",
+          "options": [
+             { "value": "1", "label": "Small"},
+             { "value": "1.5", "label": "Medium"},
+             { "value": "2", "label": "Large"},
+             { "value": "3", "label": "Extra Large"}
+          ],
+          "default": "1.5",
+          "label": "Font Size"
+      },
+      {
+        "type": "header",
+        "content": "Description"
+      },
+      {
+           "type": "color",
+           "id": "description-font-color",
+           "label": "Description Font Color",
+           "default": "#000"
+      },
+      {
+         "type": "color",
+         "id": "bd-description-font-color",
+         "label": "Best Deal Description Font Color",
+         "default": "#000"
+      },
+      {
+          "type": "select",
+          "id": "description-font",
+          "options": [
+            { "value": "Roboto", "label": "Roboto"},
+            { "value": "Cairo", "label": "Cairo"},
+            { "value": "Raleway", "label": "Raleway"},
+            { "value": "Ubuntu", "label": "Ubuntu"},
+            { "value": "Titillium", "label": "Titillium Web"},
+            { "value": "Museo", "label": "Museo"},
+            { "value": "Poppins", "label": "Poppins"}
+          ],
+          "default": "Raleway",
+          "label": "Font Family"
+      },
+      {
+          "type": "select",
+          "id": "description-font-size",
+          "options": [
+             { "value": "0.75", "label": "Small"},
+             { "value": "1", "label": "Medium"},
+             { "value": "1.25", "label": "Large"},
+             { "value": "1.75", "label": "Extra Large"}
+          ],
+          "default": "1",
+          "label": "Font Size"
+      },
+      {
+          "type": "header",
+          "content": "Price"
+      },
+      {
+          "id": "has-price",
+          "type": "checkbox",
+          "label": "Price",
+          "default": true
+      },
+      {
+           "type": "color",
+           "id": "price-font-color",
+           "label": "Price Font Color",
+           "default": "#000"
+      },
+      {
+           "type": "color",
+           "id": "bd-price-font-color",
+           "label": "Best Deal Price Font Color",
+           "default": "#000"
+      },
+      {
+            "type": "select",
+            "id": "price-font",
+            "options": [
+              { "value": "Roboto", "label": "Roboto"},
+              { "value": "Cairo", "label": "Cairo"},
+              { "value": "Raleway", "label": "Raleway"},
+              { "value": "Ubuntu", "label": "Ubuntu"},
+              { "value": "Titillium", "label": "Titillium Web"},
+              { "value": "Museo", "label": "Museo"},
+              { "value": "Poppins", "label": "Poppins"}
+            ],
+            "default": "Raleway",
+            "label": "Price Font Family"
+        },
+        {
+            "type": "select",
+            "id": "price-font-size",
+            "options": [
+               { "value": "2", "label": "Small"},
+               { "value": "3", "label": "Medium"},
+               { "value": "4", "label": "Large"},
+               { "value": "5", "label": "Extra Large"}
+            ],
+            "default": "3",
+            "label": "Price Font Size"
+        },
+        {
+          "type": "header",
+          "content": "Discount"
+        },
+        {
+          "id": "has-discount",
+          "type": "checkbox",
+          "label": "Discount",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "discount-font-color",
+          "label": "Discount Font Color",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "bd-discount-font-color",
+          "label": "Best Deal Discount Font Color",
+          "default": "#000"
+        },
+        {
+          "type": "select",
+          "id": "discount-font",
+          "options": [
+            { "value": "Roboto", "label": "Roboto"},
+            { "value": "Cairo", "label": "Cairo"},
+            { "value": "Raleway", "label": "Raleway"},
+            { "value": "Ubuntu", "label": "Ubuntu"},
+            { "value": "Titillium", "label": "Titillium Web"},
+            { "value": "Museo", "label": "Museo"},
+            { "value": "Poppins", "label": "Poppins"}
+          ],
+          "default": "Raleway",
+          "label": "Discount Font Family"
+      },
+      {
+          "type": "select",
+          "id": "discount-font-size",
+          "options": [
+             { "value": "0.75", "label": "Small"},
+             { "value": "1", "label": "Medium"},
+             { "value": "1.25", "label": "Large"},
+             { "value": "1.5", "label": "Extra Large"}
+          ],
+          "default": "1",
+          "label": "Discount Font Size"
+      },
+      {
+        "type": "header",
+        "content": "Tag"
+      },
+      {
+        "id": "tag-has-bg",
+        "type": "checkbox",
+        "label": "Has Tag Bg",
+        "default": false
+      },
+      {
+         "type": "select",
+         "id": "tag-font",
+         "options": [
+            { "value": "Roboto", "label": "Roboto"},
+            { "value": "Cairo", "label": "Cairo"},
+            { "value": "Raleway", "label": "Raleway"},
+            { "value": "Ubuntu", "label": "Ubuntu"},
+            { "value": "Titillium", "label": "Titillium Web"},
+            { "value": "Museo", "label": "Museo"},
+            { "value": "Poppins", "label": "Poppins"}
+         ],
+         "default": "Cairo",
+         "label": "Tag Font Family"
+      },
+      {
+        "type": "color",
+        "id": "tag-font-color",
+        "label": "Tag Font Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "tag-background-color",
+        "label": "Tag Background Color",
+        "default": "#000000"
+      },
+      {
+         "type": "select",
+         "id": "tag-font-weight",
+         "options": [
+            { "value": "300", "label": "300"},
+            { "value": "400", "label": "400"},
+            { "value": "600", "label": "600"},
+            { "value": "900", "label": "900"}
+         ],
+         "default": "400",
+         "label": "Tag Font Weight"
+      },
+      {
+          "type": "select",
+          "id": "tag-font-size",
+          "options": [
+             { "value": "0.5", "label": "Small"},
+             { "value": "0.75", "label": "Medium"},
+             { "value": "1", "label": "Large"},
+             { "value": "1.5", "label": "Extra Large"}
+          ],
+          "default": "1.5",
+          "label": "Tag Font Size"
+      },
+      {
+        "type": "header",
+        "content": "Product Variant"
+      },
+      {
+         "type": "color",
+         "id": "variant-font-color",
+         "label": "Variant Font Color",
+         "default": "#000"
+      },
+      {
+         "type": "color",
+         "id": "variant-background-color",
+         "label": "Variant Background Color",
+         "default": "#FFF"
+      },
+      {
+         "type": "color",
+         "id": "variant-border-color",
+         "label": "Variant Border Color",
+         "default": "#77328b"
+      },
+      {
+         "type": "text",
+         "id": "variant-border-radius",
+         "label": "Variant Border Radius",
+         "default": "4px"
+      },
+      {
+          "type": "select",
+          "id": "variant-font-family",
+          "options": [
+            { "value": "Roboto", "label": "Roboto"},
+            { "value": "Cairo", "label": "Cairo"},
+            { "value": "Raleway", "label": "Raleway"},
+            { "value": "Ubuntu", "label": "Ubuntu"},
+            { "value": "Titillium", "label": "Titillium Web"},
+            { "value": "Museo", "label": "Museo"},
+            { "value": "Poppins", "label": "Poppins"}
+          ],
+          "default": "Raleway",
+          "label": "Variant Font Family"
+      },
+      {
+          "type": "select",
+          "id": "variant-font-size",
+          "options": [
+             { "value": "1", "label": "Small"},
+             { "value": "1.25", "label": "Medium"},
+             { "value": "1.5", "label": "Large"},
+             { "value": "2", "label": "Extra Large"}
+          ],
+          "default": "1",
+          "label": "Variant Font Size"
+      },
+      {
+        "type": "header",
+        "content": "CTA"
+      },
+      {
+         "type": "text",
+         "id": "cta-text",
+         "label": "Cta Text",
+         "default": "Buy it now"
+      },
+      {
+          "type": "select",
+          "id": "cta-type",
+          "options": [
+            { "value": "checkout", "label": "Checkout"},
+            { "value": "cart", "label": "Cart"},
+            { "value": "link", "label": "Link"}
+          ],
+          "default": "checkout",
+          "label": "CTA Type"
+      },
+      {
+         "type": "text",
+         "id": "cta-link",
+         "label": "Checkout Link",
+         "default": "//"
+      },
+      {
+        "type": "select",
+        "id": "cta-font-family",
+        "options": [
+            { "value": "Roboto", "label": "Roboto"},
+            { "value": "Cairo", "label": "Cairo"},
+            { "value": "Raleway", "label": "Raleway"},
+            { "value": "Ubuntu", "label": "Ubuntu"},
+            { "value": "Titillium", "label": "Titillium Web"},
+            { "value": "Museo", "label": "Museo"},
+            { "value": "Poppins", "label": "Poppins"}
+        ],
+        "default": "Raleway",
+        "label": "Button Font Family"
+      },
+      {
+        "type": "color",
+        "id": "cta-font-color",
+        "label": "Button Font Color",
+        "default": "#FFF"
+      },
+      {
+        "type": "color",
+        "id": "bd-cta-font-color",
+        "label": "Best Deal Button Font Color",
+        "default": "#FFF"
+      },
+      {
+        "type": "color",
+        "id": "cta-background-color",
+        "label": "Button Background Color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "bd-cta-background-color",
+        "label": "Best Deal Button Background Color",
+        "default": "#000"
+      },
+      {
+        "id": "cta-border-radius",
+        "type": "text",
+        "label": "Border Radius",
+        "default": "4px"
+      },
+      {
+          "type": "select",
+          "id": "cta-font-size",
+          "options": [
+             { "value": "1", "label": "Small"},
+             { "value": "1.25", "label": "Medium"},
+             { "value": "1.5", "label": "Large"},
+             { "value": "2", "label": "Extra Large"}
+          ],
+          "default": "1.25",
+          "label": "Font Size"
+      },
+      {
+        "type": "select",
+        "id": "align-cta",
+        "options": [
+          { "value": "center", "label": "center"},
+          { "value": "left", "label": "left"},
+          { "value": "right", "label": "right"},
+          { "value": "space-evenly", "label": "space-evenly"}
+         ],
+      "default": "space-evenly",
+        "label": "Cta Align"
+      }
+  ],
+  "blocks": [
+      {
+      "type": "html",
+      "name": "Custom HTML",
+      "settings": [
+            {
+                "id": "custom-html",
+                "type": "html",
+                "label": "Custom HTML"
+            }
+      ]
+    },
+  {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "info": "If none is set, collection title is used."
+        },
+        {
+          "type": "range",
+          "id": "grid_items_count",
+          "min": 2,
+          "max": 50,
+          "step": 1,
+          "label": "Products to show",
+          "default": 8
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "View all products"
+        }
+      ]
+    },
+  {
+      "type": "h1",
+      "name": "Title H1",
+      "settings": [
+        {
+            "id": "text",
+            "type": "text",
+            "label": "Add custom text below",
+            "default": "Add your text here"
+        },
+        {
+           "type": "select",
+           "id": "font",
+           "options": [
+                { "value": "Roboto", "label": "Roboto"},
+                { "value": "Cairo", "label": "Cairo"},
+                { "value": "Raleway", "label": "Raleway"},
+                { "value": "Ubuntu", "label": "Ubuntu"},
+                { "value": "Titillium", "label": "Titillium Web"},
+                { "value": "Museo", "label": "Museo"},
+                { "value": "Poppins", "label": "Poppins"}
+            ],
+            "default": "Cairo",
+            "label": "Font Family"
+        },
+        {
+            "type": "select",
+            "id": "font-size",
+            "options": [
+               { "value": "1.5", "label": "Small"},
+               { "value": "2", "label": "Medium"},
+               { "value": "2.5", "label": "Large"},
+               { "value": "3.5", "label": "Extra Large"}
+            ],
+            "default": "2",
+            "label": "Font Size"
+        },
+    {
+          "type": "color",
+          "id": "font-color",
+          "label": "Font Color",
+          "default": "#000000"
+    },
+    {
+           "type": "select",
+           "id": "align",
+           "options": [
+              { "value": "center", "label": "center"},
+              { "value": "left", "label": "left"},
+              { "value": "right", "label": "right"}
+           ],
+           "default": "center",
+           "label": "Align"
+        },
+        {
+           "type": "select",
+           "id": "font-weight",
+           "options": [
+              { "value": "300", "label": "300"},
+              { "value": "400", "label": "400"},
+              { "value": "600", "label": "600"},
+              { "value": "900", "label": "900"}
+           ],
+           "default": "600",
+           "label": "Font Weight"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "settings": [
+        {
+          "id": "text",
+          "type": "richtext",
+          "label": "Feature text",
+          "default": "<p>🚀<p>"
+        },
+        {
+           "type": "select",
+           "id": "font-family",
+           "options": [
+                { "value": "Roboto", "label": "Roboto"},
+                { "value": "Cairo", "label": "Cairo"},
+                { "value": "Raleway", "label": "Raleway"},
+                { "value": "Ubuntu", "label": "Ubuntu"},
+                { "value": "Titillium", "label": "Titillium Web"},
+                { "value": "Museo", "label": "Museo"},
+                { "value": "Poppins", "label": "Poppins"}
+           ],
+           "default": "Cairo",
+           "label": "Font Family"
+        },
+        {
+              "type": "color",
+              "id": "font-color",
+              "label": "Font Color",
+              "default": "#000000"
+        },
+        {
+           "type": "select",
+           "id": "font-weight",
+           "options": [
+              { "value": "300", "label": "300"},
+              { "value": "400", "label": "400"},
+              { "value": "600", "label": "600"},
+              { "value": "900", "label": "900"}
+           ],
+           "default": "400",
+           "label": "Font Weight"
+        },
+        {
+            "type": "select",
+            "id": "font-size",
+            "options": [
+               { "value": "1", "label": "Small"},
+               { "value": "1.25", "label": "Medium"},
+               { "value": "1.5", "label": "Large"},
+               { "value": "2", "label": "Extra Large"}
+            ],
+            "default": "1",
+            "label": "Font Size"
+        },
+        {
+           "type": "select",
+           "id": "align",
+           "options": [
+              { "value": "center", "label": "center"},
+              { "value": "left", "label": "left"},
+              { "value": "right", "label": "right"}
+           ],
+           "default": "center",
+           "label": "Content Align"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Dropsmart Sections",
+      "name": "Product Collection"
+    }
+  ]
+}
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

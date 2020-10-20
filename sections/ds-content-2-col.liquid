@@ -1,0 +1,413 @@
+<div
+  id="{{section.settings.section-id}}"
+  style="
+    background-color: {{section.settings.background-color}};
+    {% if section.settings.hasBackground %} 
+      background-image: url('{{section.settings.background-image | img_url: 'master'}}')
+    {% endif %}
+    ;"
+ class="lp-content"
+>
+  <div class="Container {{section.settings.padding}} {{section.settings.no-padding}}"
+    style="align-self: {{section.settings.vertical-align-content}};"
+  >
+    <div class="center_content container-{{section.settings.container-width}} flex-column">
+      
+      <div class="content justify-{{section.settings.align-content}}">
+        {% for block in section.blocks %}
+          {% case block.type %}
+
+            {% when 'h1' %}
+             {%- include 'component-h1', 
+                 fontColor: block.settings.font-color, 
+                 fontSize: block.settings.font-size, 
+             fontFamily: block.settings.font-family, 
+                 align: block.settings.align,
+             fontWeight: block.settings.font-weight,
+                 text: block.settings.text
+               -%}
+          {% when 'paragraph' %}
+             {%- include 'component-paragraph', 
+                 fontColor: block.settings.font-color, 
+                 fontSize: block.settings.font-size, 
+                 fontFamily: block.settings.font-family, 
+                 align: block.settings.align,
+                 fontWeight: block.settings.font-weight,
+                 text: block.settings.text
+               -%}
+
+          {% when 'content-image' %}
+            {% include 'component-content-img' %}
+        
+            {% when 'cta' %}
+             {%- include 'component-cta',
+                 backgroundColor: block.settings.background-color, 
+                 fontColor: block.settings.font-color, 
+                 fontFamily: block.settings.font-family, 
+                 fontSize: block.settings.font-size, 
+                 link: block.settings.link,
+                 borderRadius: block.settings.border-radius,
+                 align: block.settings.align,
+                 text: block.settings.text,
+              -%}
+
+
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "2 Col Content",
+  "class": "lp-content-2-col",
+  "tag": "section",
+  "max_blocks": 10,
+  "presets": [
+    {
+      "category": "Dropsmart Sections",
+      "name": "2 Col Content",
+      "settings": {},
+      "blocks": [
+    {
+      "type": "h1"
+    },
+    {
+      "type": "paragraph"
+    },
+        {
+          "type": "cta"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "id": "section-id",
+      "type": "text",
+      "label": "Section"
+    },
+    {
+          "type": "color",
+          "id": "background-color",
+          "label": "Background Color",
+          "default": "#f2f4f5"
+    },
+    {
+          "id": "hasBackground",
+          "type": "checkbox",
+          "label": "Use Backgound Image",
+          "default": false
+    },
+    {
+      "id": "background-image",
+      "type": "image_picker",
+      "label": "Background image"
+    },
+    {
+         "type": "select",
+         "id": "align-content",
+         "options": [
+            { "value": "center", "label": "center"},
+            { "value": "left", "label": "left"},
+            { "value": "right", "label": "right"}
+         ],
+       "default": "center",
+         "label": "Content Align"
+      },
+        {
+         "type": "select",
+         "id": "vertical-align-content",
+         "options": [
+            { "value": "center", "label": "center"},
+            { "value": "flex-start", "label": "start"},
+            { "value": "flex-end", "label": "end"}
+         ],
+       "default": "flex-start",
+         "label": "Content Vertical Align"
+      },
+      {
+         "type": "select",
+         "id": "padding",
+         "options": [
+        { "value": "space-around-small", "label": "Space Around Small"},
+            { "value": "regular", "label": "Regular"},
+            { "value": "space-around", "label": "Space Around"},
+        { "value": "regular-large", "label": "Regular Large"},
+            { "value": "space-around-large", "label": "Space Around Large"}
+         ],
+       "default": "regular",
+         "label": "Section Padding"
+      },
+      {
+         "type": "select",
+         "id": "no-padding",
+         "options": [
+            { "value": "no-padding-bottom", "label": "Remove Bottom"},
+            { "value": "no-padding-top", "label": "Remove Top"},
+            { "value": "no-padding", "label": "Remove Both"},
+            { "value": "regular", "label": "Don't Remove"}
+         ],
+         "default": "regular",
+         "label": "Remove Padding"
+      },
+      {
+         "type": "select",
+         "id": "container-width",
+         "options": [
+            { "value": "full", "label": "Full"},
+            { "value": "medium", "label": "Medium"},
+            { "value": "small", "label": "Small"}
+         ],
+         "default": "full",
+         "label": "Container width"
+      }
+    ],
+  "blocks": [
+    {
+      "type": "html",
+      "name": "Custom HTML",
+      "settings": [
+            {
+                "id": "custom-html",
+                "type": "html",
+                "label": "Custom HTML"
+            }
+      ]
+    },
+    {
+      "type": "h1",
+      "name": "Heading H1",
+      "settings": [
+        {
+            "id": "text",
+            "type": "text",
+            "label": "Heading",
+            "default": "Landing Page Title"
+        },
+        {
+            "type": "select",
+            "id": "font-size",
+            "options": [
+               { "value": "2", "label": "Small"},
+               { "value": "2.5", "label": "Medium"},
+               { "value": "3", "label": "Large"},
+               { "value": "4", "label": "Extra Large"}
+            ],
+            "default": "3",
+            "label": "Font Size"
+        },
+        {
+           "type": "select",
+           "id": "font-family",
+           "options": [
+              { "value": "Roboto", "label": "Roboto"},
+              { "value": "Cairo", "label": "Cairo"},
+              { "value": "Raleway", "label": "Raleway"},
+              { "value": "Ubuntu", "label": "Ubuntu"},
+              { "value": "Titillium", "label": "Titillium Web"},
+              { "value": "Museo", "label": "Museo"},
+              { "value": "Poppins", "label": "Poppins"}
+           ],
+           "default": "Raleway",
+           "label": "Font Family"
+        },
+        {
+          "type": "color",
+          "id": "font-color",
+          "label": "Font Color",
+          "default": "#000000"
+        },
+        {
+           "type": "select",
+           "id": "align",
+           "options": [
+              { "value": "center", "label": "center"},
+              { "value": "left", "label": "left"},
+              { "value": "right", "label": "right"}
+           ],
+           "default": "center",
+           "label": "Align"
+        },
+        {
+           "type": "select",
+           "id": "font-weight",
+           "options": [
+              { "value": "300", "label": "300"},
+              { "value": "400", "label": "400"},
+              { "value": "600", "label": "600"},
+              { "value": "900", "label": "900"}
+           ],
+           "default": "600",
+           "label": "Font Weight"
+        }
+      ]
+    },
+
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "settings": [
+        {
+          "id": "text",
+          "type": "richtext",
+          "label": "Feature text",
+          "default": "<p>🚀<p>"
+        },
+        {
+           "type": "select",
+           "id": "font-family",
+           "options": [
+                { "value": "Roboto", "label": "Roboto"},
+                { "value": "Cairo", "label": "Cairo"},
+                { "value": "Raleway", "label": "Raleway"},
+                { "value": "Ubuntu", "label": "Ubuntu"},
+                { "value": "Titillium", "label": "Titillium Web"},
+                { "value": "Museo", "label": "Museo"},
+                { "value": "Poppins", "label": "Poppins"}
+           ],
+           "default": "Cairo",
+           "label": "Font Family"
+        },
+        {
+              "type": "color",
+              "id": "font-color",
+              "label": "Font Color",
+              "default": "#000000"
+        },
+        {
+           "type": "select",
+           "id": "font-weight",
+           "options": [
+              { "value": "300", "label": "300"},
+              { "value": "400", "label": "400"},
+              { "value": "600", "label": "600"},
+              { "value": "900", "label": "900"}
+           ],
+           "default": "400",
+           "label": "Font Weight"
+        },
+        {
+            "type": "select",
+            "id": "font-size",
+            "options": [
+               { "value": "1", "label": "Small"},
+               { "value": "1.25", "label": "Medium"},
+               { "value": "1.5", "label": "Large"},
+               { "value": "2", "label": "Extra Large"}
+            ],
+            "default": "1",
+            "label": "Font Size"
+        },
+        {
+           "type": "select",
+           "id": "align",
+           "options": [
+              { "value": "center", "label": "center"},
+              { "value": "left", "label": "left"},
+              { "value": "right", "label": "right"}
+           ],
+           "default": "center",
+           "label": "Content Align"
+        }
+      ]
+    },
+
+    {
+      "type": "content-image",
+      "name": "Content Image",
+      "settings" : [
+          {
+              "id": "content-image",
+              "type": "image_picker",
+              "label": "Content Image"
+          }
+      ]
+    },
+
+    {
+      "type": "cta",
+      "name": "cta",
+      "settings": [
+        {
+          "id": "border-radius",
+          "type": "text",
+          "label": "Border Radius",
+          "default": "4px"
+        },
+        {
+          "id": "link",
+          "type": "text",
+          "label": "Button link",
+          "default": "#combo"
+        },
+        {
+          "id": "text",
+          "type": "text",
+          "label": "Button text",
+          "default": "Click here"
+        },
+        {
+            "type": "select",
+            "id": "font-size",
+            "options": [
+               { "value": "1.25", "label": "Small"},
+               { "value": "1.5", "label": "Medium"},
+               { "value": "2", "label": "Large"},
+               { "value": "2.5", "label": "Extra Large"}
+            ],
+            "default": "1.5",
+            "label": "Font Size"
+        },
+        {
+           "type": "select",
+           "id": "align",
+           "options": [
+              { "value": "center", "label": "center"},
+              { "value": "left", "label": "left"},
+              { "value": "right", "label": "right"}
+           ],
+           "default": "center",
+           "label": "Align"
+        },
+        {
+           "type": "select",
+           "id": "font",
+           "options": [
+                { "value": "Roboto", "label": "Roboto"},
+                { "value": "Cairo", "label": "Cairo"},
+                { "value": "Raleway", "label": "Raleway"},
+                { "value": "Ubuntu", "label": "Ubuntu"},
+                { "value": "Titillium", "label": "Titillium Web"},
+                { "value": "Museo", "label": "Museo"},
+                { "value": "Poppins", "label": "Poppins"}
+           ],
+            "default": "Raleway",
+            "label": "Font Family"
+        },
+        {
+          "type": "color",
+          "id": "font-color",
+          "label": "Font Color",
+          "default": "#FFF"
+        },
+        {
+          "type": "color",
+          "id": "background-color",
+          "label": "Background Color",
+          "default": "#000"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
