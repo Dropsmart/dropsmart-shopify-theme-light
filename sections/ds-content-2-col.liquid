@@ -69,7 +69,7 @@
   "presets": [
     {
       "category": "Dropsmart Sections",
-      "name": "2 Col Content",
+      "name": "Conteúdo 2 Colunas",
       "settings": {},
       "blocks": [
     {
@@ -88,82 +88,80 @@
     {
       "id": "section-id",
       "type": "text",
-      "label": "Section"
+      "label": "Seção"
     },
     {
           "type": "color",
           "id": "background-color",
-          "label": "Background Color",
+          "label": "Cor de Fundo",
           "default": "#f2f4f5"
     },
     {
           "id": "hasBackground",
           "type": "checkbox",
-          "label": "Use Backgound Image",
+          "label": "Usar Imagem de Fundo",
           "default": false
     },
     {
       "id": "background-image",
       "type": "image_picker",
-      "label": "Background image"
+      "label": "Imagem de Fundo"
     },
     {
          "type": "select",
          "id": "align-content",
          "options": [
-            { "value": "center", "label": "center"},
-            { "value": "left", "label": "left"},
-            { "value": "right", "label": "right"}
+            { "value": "center", "label": "Centralizado"},
+            { "value": "left", "label": "Esquerda"},
+            { "value": "right", "label": "Direita"}
          ],
        "default": "center",
-         "label": "Content Align"
+         "label": "Alinhamento Horizontal"
       },
         {
          "type": "select",
          "id": "vertical-align-content",
          "options": [
-            { "value": "center", "label": "center"},
-            { "value": "flex-start", "label": "start"},
-            { "value": "flex-end", "label": "end"}
+            { "value": "center", "label": "Centralizado"},
+            { "value": "flex-start", "label": "Superior"},
+            { "value": "flex-end", "label": "Inferior"}
          ],
        "default": "flex-start",
-         "label": "Content Vertical Align"
+         "label": "Alinhamento Vertical"
       },
       {
          "type": "select",
          "id": "padding",
          "options": [
-        { "value": "space-around-small", "label": "Space Around Small"},
-            { "value": "regular", "label": "Regular"},
-            { "value": "space-around", "label": "Space Around"},
-        { "value": "regular-large", "label": "Regular Large"},
-            { "value": "space-around-large", "label": "Space Around Large"}
+    	  { "value": "space-around-small", "label": "Pequeno"},
+          { "value": "regular", "label": "Médio"},
+          { "value": "space-around", "label": "Grande"}
          ],
        "default": "regular",
-         "label": "Section Padding"
+         "label": "Espaçamento da Seção"
       },
       {
          "type": "select",
          "id": "no-padding",
          "options": [
-            { "value": "no-padding-bottom", "label": "Remove Bottom"},
-            { "value": "no-padding-top", "label": "Remove Top"},
-            { "value": "no-padding", "label": "Remove Both"},
-            { "value": "regular", "label": "Don't Remove"}
+            { "value": "no-padding-bottom", "label": "Remover Inferior"},
+            { "value": "no-padding-top", "label": "Remover Superior"},
+            { "value": "no-padding", "label": "Remover Ambos"},
+            { "value": "", "label": "Não Remover"}
          ],
-         "default": "regular",
-         "label": "Remove Padding"
+         "default": "",
+         "label": "Remover Espaçamento"
       },
       {
          "type": "select",
          "id": "container-width",
          "options": [
-            { "value": "full", "label": "Full"},
-            { "value": "medium", "label": "Medium"},
-            { "value": "small", "label": "Small"}
+            { "value": "full", "label": "Grande"},
+            { "value": "medium", "label": "Médio"},
+            { "value": "small", "label": "Pequeno"}
          ],
-         "default": "full",
-         "label": "Container width"
+         "default": "medium",
+         "label": "Largura"
       }
     ],
   "blocks": [
@@ -174,7 +172,7 @@
             {
                 "id": "custom-html",
                 "type": "html",
-                "label": "Custom HTML"
+                "label": "HTML Personalizado"
             }
       ]
     },
@@ -185,20 +183,20 @@
         {
             "id": "text",
             "type": "text",
-            "label": "Heading",
-            "default": "Landing Page Title"
+            "label": "Título",
+            "default": "Lorem Ipsum"
         },
         {
             "type": "select",
             "id": "font-size",
             "options": [
-               { "value": "2", "label": "Small"},
-               { "value": "2.5", "label": "Medium"},
-               { "value": "3", "label": "Large"},
-               { "value": "4", "label": "Extra Large"}
+               { "value": "2", "label": "Pequeno"},
+               { "value": "2.5", "label": "Médio"},
+               { "value": "3", "label": "Grande"},
+               { "value": "4", "label": "Muito Grande"}
             ],
             "default": "3",
-            "label": "Font Size"
+            "label": "Tamanho da Fonte"
         },
         {
            "type": "select",
@@ -213,36 +211,36 @@
               { "value": "Poppins", "label": "Poppins"}
            ],
            "default": "Raleway",
-           "label": "Font Family"
+           "label": "Fonte"
         },
         {
           "type": "color",
           "id": "font-color",
-          "label": "Font Color",
+          "label": "Cor da Fonte",
           "default": "#000000"
         },
         {
            "type": "select",
            "id": "align",
            "options": [
-              { "value": "center", "label": "center"},
-              { "value": "left", "label": "left"},
-              { "value": "right", "label": "right"}
+              { "value": "center", "label": "Centralizado"},
+              { "value": "left", "label": "Esquerda"},
+              { "value": "right", "label": "Direita"}
            ],
            "default": "center",
-           "label": "Align"
+           "label": "Alinhamento"
         },
         {
            "type": "select",
            "id": "font-weight",
            "options": [
-              { "value": "300", "label": "300"},
-              { "value": "400", "label": "400"},
-              { "value": "600", "label": "600"},
-              { "value": "900", "label": "900"}
+              { "value": "300", "label": "Fino"},
+              { "value": "400", "label": "Normal"},
+              { "value": "600", "label": "Negrito"},
+              { "value": "900", "label": "Extra Negrito"}
            ],
            "default": "600",
-           "label": "Font Weight"
+           "label": "Peso da Fonte"
         }
       ]
     },
@@ -254,8 +252,8 @@
         {
           "id": "text",
           "type": "richtext",
-          "label": "Feature text",
-          "default": "<p>🚀<p>"
+          "label": "Texto",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consequat, augue vel sollicitudin auctor, tortor felis tristique tortor, et fermentum est nibh sed nunc.<p>"
         },
         {
            "type": "select",
@@ -270,48 +268,48 @@
                 { "value": "Poppins", "label": "Poppins"}
            ],
            "default": "Cairo",
-           "label": "Font Family"
+           "label": "Fonte"
         },
         {
               "type": "color",
               "id": "font-color",
-              "label": "Font Color",
+              "label": "Cor da Fonte",
               "default": "#000000"
         },
         {
            "type": "select",
            "id": "font-weight",
            "options": [
-              { "value": "300", "label": "300"},
-              { "value": "400", "label": "400"},
-              { "value": "600", "label": "600"},
-              { "value": "900", "label": "900"}
+              { "value": "300", "label": "Fino"},
+              { "value": "400", "label": "Normal"},
+              { "value": "600", "label": "Negrito"},
+              { "value": "900", "label": "Extra Negrito"}
            ],
            "default": "400",
-           "label": "Font Weight"
+           "label": "Peso da Fonte"
         },
         {
             "type": "select",
             "id": "font-size",
             "options": [
-               { "value": "1", "label": "Small"},
-               { "value": "1.25", "label": "Medium"},
-               { "value": "1.5", "label": "Large"},
-               { "value": "2", "label": "Extra Large"}
+               { "value": "1", "label": "Pequeno"},
+               { "value": "1.25", "label": "Médio"},
+               { "value": "1.5", "label": "Grande"},
+               { "value": "2", "label": "Muito Grande"}
             ],
             "default": "1",
-            "label": "Font Size"
+            "label": "Tamanho da Fonte"
         },
         {
            "type": "select",
            "id": "align",
            "options": [
-              { "value": "center", "label": "center"},
-              { "value": "left", "label": "left"},
-              { "value": "right", "label": "right"}
+              { "value": "center", "label": "Centralizado"},
+              { "value": "left", "label": "Esquerda"},
+              { "value": "right", "label": "Direita"}
            ],
            "default": "center",
-           "label": "Content Align"
+           "label": "Alinhamento Horizontal"
         }
       ]
     },
@@ -323,7 +321,7 @@
           {
               "id": "content-image",
               "type": "image_picker",
-              "label": "Content Image"
+              "label": "Imagem"
           }
       ]
     },
@@ -335,43 +333,32 @@
         {
           "id": "border-radius",
           "type": "text",
-          "label": "Border Radius",
+          "label": "Arredondamento da Borda",
           "default": "4px"
         },
         {
           "id": "link",
           "type": "text",
-          "label": "Button link",
+          "label": "Link do Botão",
           "default": "#combo"
         },
         {
           "id": "text",
           "type": "text",
-          "label": "Button text",
+          "label": "Texto do Botão",
           "default": "Click here"
         },
         {
             "type": "select",
             "id": "font-size",
             "options": [
-               { "value": "1.25", "label": "Small"},
-               { "value": "1.5", "label": "Medium"},
-               { "value": "2", "label": "Large"},
-               { "value": "2.5", "label": "Extra Large"}
+               { "value": "1.25", "label": "Pequeno"},
+               { "value": "1.5", "label": "Médio"},
+               { "value": "2", "label": "Grande"},
+               { "value": "2.5", "label": "Muito Grande"}
             ],
             "default": "1.5",
-            "label": "Font Size"
-        },
-        {
-           "type": "select",
-           "id": "align",
-           "options": [
-              { "value": "center", "label": "center"},
-              { "value": "left", "label": "left"},
-              { "value": "right", "label": "right"}
-           ],
-           "default": "center",
-           "label": "Align"
+            "label": "Tamanho da Fonte"
         },
         {
            "type": "select",
@@ -386,18 +373,18 @@
                 { "value": "Poppins", "label": "Poppins"}
            ],
             "default": "Raleway",
-            "label": "Font Family"
+            "label": "Fonte"
         },
         {
           "type": "color",
           "id": "font-color",
-          "label": "Font Color",
+          "label": "Cor da Fonte",
           "default": "#FFF"
         },
         {
           "type": "color",
           "id": "background-color",
-          "label": "Background Color",
+          "label": "Cor de Fundo",
           "default": "#000"
         }
       ]
@@ -405,7 +392,6 @@
   ]
 }
 {% endschema %}
-
 
 {% stylesheet %}
 {% endstylesheet %}
