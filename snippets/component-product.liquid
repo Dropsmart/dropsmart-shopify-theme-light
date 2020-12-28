@@ -86,7 +86,9 @@
                 {%- assign discountFontColor = section.settings.discount-font-color -%}
                 {%- assign discountBackgroundColor = section.settings.discount-background-color -%}
               {% endif %}
-              {%- assign discount = product.price | times: 100 | divided_by: product.compare_at_price_max  %}
+
+              {%- assign discountPrice = product.compare_at_price_max | minus: product.price %}
+              {%- assign discount = discountPrice | times: 100 | divided_by: product.compare_at_price_max %}
                 <div>
                   <span {% if discountFontColor %} 
                         style="font-size:{{section.settings.discount-font-size}}em; 
