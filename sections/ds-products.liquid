@@ -23,12 +23,12 @@
                -%}
 
           {% when 'paragraph' %}
+            {% assign fontSizeDefault = '1.5' %}
              {%- include 'component-paragraph', 
                  fontColor: block.settings.font-color, 
-                 fontSize: block.settings.font-size, 
+                 fontSize: fontSizeDefault, 
                  fontFamily: block.settings.font-family, 
                  align: block.settings.align,
-                 fontWeight: block.settings.font-weight,
                  text: block.settings.text
                -%}
 
@@ -340,7 +340,7 @@
               { "value": "Museo", "label": "Museo"},
               { "value": "Poppins", "label": "Poppins"}
             ],
-            "default": "Raleway",
+            "default": "Roboto",
             "label": "Price Font Family"
         },
         {
@@ -352,7 +352,7 @@
                { "value": "4", "label": "Large"},
                { "value": "5", "label": "Extra Large"}
             ],
-            "default": "3",
+            "default": "2",
             "label": "Price Font Size"
         },
         {
@@ -759,30 +759,6 @@
               "id": "font-color",
               "label": "Font Color",
               "default": "#000000"
-        },
-        {
-           "type": "select",
-           "id": "font-weight",
-           "options": [
-              { "value": "300", "label": "300"},
-              { "value": "400", "label": "400"},
-              { "value": "600", "label": "600"},
-              { "value": "900", "label": "900"}
-           ],
-           "default": "400",
-           "label": "Font Weight"
-        },
-        {
-            "type": "select",
-            "id": "font-size",
-            "options": [
-               { "value": "1", "label": "Small"},
-               { "value": "1.25", "label": "Medium"},
-               { "value": "1.5", "label": "Large"},
-               { "value": "2", "label": "Extra Large"}
-            ],
-            "default": "1",
-            "label": "Font Size"
         },
         {
            "type": "select",
