@@ -1,5 +1,8 @@
 <div class="image">
   <figure>
-    <img class="content lazyload" src="{{ block.settings.content-image | img_url: 'master' }}" data-src="{{ block.settings.content-image | img_url: 'master' }} " alt="Component Content Image" />
+    <img class="content lazyload mobile-hide" src="{{ block.settings.content-image | img_url: 'master' }}"
+      data-src="{{ block.settings.content-image | img_url: 'master' }} " alt="Component Content Image" />
+    <img class="content lazyload desktop-hide" src="{{ block.settings.mobile-content-image | img_url: 'master' }}"
+      data-src="{{ block.settings.mobile-content-image | img_url: 'master' }} " alt="Component Content Image" />
   </figure>
 </div>
