@@ -6,7 +6,7 @@
          url('{{section.settings.background-image | img_url: 'master'}}') no-repeat center center; background-size: cover 
       {% endif %}
     ;"
- class="lp-content"
+  class="lp-content {% if section.settings.reverse-on-mobile %}mobile-reverse{% endif %}"
 >
   <div class="Container {{section.settings.padding}} {{section.settings.no-padding}}"
     style="align-self: {{section.settings.vertical-align-content}};"
@@ -100,6 +100,12 @@
         "type": "checkbox",
         "label": "Use Backgound Image",
         "default": false
+  },
+  {
+    "id": "reverse-on-mobile",
+    "type": "checkbox",
+    "label": "Reverse on Mobile",
+    "default": false
   },
   {
     "id": "background-image",

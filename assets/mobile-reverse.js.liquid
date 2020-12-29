@@ -1,0 +1,10 @@
+document.addEventListener("DOMContentLoaded", function(event) {
+  console.log("DOM completamente carregado e analisado");
+
+  var twoColList = document.querySelectorAll('.mobile-reverse');
+  for (var i = 0; i < twoColList.length; i++) {
+    var twoCol = twoColList[i];
+    var parentSection = twoCol.parentNode;
+    parentSection.classList.add('mobile-reverse');
+  }
+});
