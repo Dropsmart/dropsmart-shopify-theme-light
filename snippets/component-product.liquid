@@ -165,7 +165,7 @@
                 </defs>
               </svg>
           </button>
-          {% else if section.settings.cta-type == 'link' %}
+          <!-- {% else if section.settings.cta-type == 'link' %}
               {%- assign link = section.settings.cta-link | append: product.id | append: ':1' %}
               {% capture onclick %}comboChosen({{product.title}}, {{price}}){% endcapture %}
               {% if isBest == 1 %}
@@ -186,7 +186,9 @@
                 borderRadius: section.settings.cta-border-radius
               -%}
           {% else if section.settings.cta-type == 'checkout' %}
-              {%- assign link = '/cart' | append: product.id | append: ':1' %}
+              {%- assign link = '/cart' | append: product.id | append: ':1' %} -->
+          {% else if section.settings.cta-type == 'link' %}
+              {%- assign link = section.settings.cta-link | append: product.id | append: ':1' %}
               {% capture onclick %}comboChosen({{product.title}}, {{price}}){% endcapture %}
               {% if isBest == 1 %}
                 {%- assign ctaFontColor = section.settings.bd-cta-font-color -%}
@@ -205,6 +207,10 @@
                 onclick: onclick
                 borderRadius: section.settings.cta-border-radius
               -%}
+          {% else if section.settings.cta-type == 'barcode' %}
+          	  {%- assign link = product.selected_or_first_available_variant.barcode %}
+          {% else if section.settings.cta-type == 'checkout' %}
+              {%- assign link = '' | append: '/cart' | append: product.id | append: ':1' %}
           {% endif %}
         </div>
     </div>
