@@ -1,0 +1,9 @@
+document.addEventListener("DOMContentLoaded", function(event) {
+
+  var twoColList = document.querySelectorAll('.mobile-reverse');
+  for (var i = 0; i < twoColList.length; i++) {
+    var twoCol = twoColList[i];
+    var parentSection = twoCol.parentNode;
+    parentSection.classList.add('mobile-reverse');
+  }
+});

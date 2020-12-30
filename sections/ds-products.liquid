@@ -23,12 +23,12 @@
                -%}
 
           {% when 'paragraph' %}
+            {% assign fontSizeDefault = '1.5' %}
              {%- include 'component-paragraph', 
                  fontColor: block.settings.font-color, 
-                 fontSize: block.settings.font-size, 
+                 fontSize: fontSizeDefault, 
                  fontFamily: block.settings.font-family, 
                  align: block.settings.align,
-                 fontWeight: block.settings.font-weight,
                  text: block.settings.text
                -%}
 
@@ -337,7 +337,7 @@
               { "value": "Museo", "label": "Museo"},
               { "value": "Poppins", "label": "Poppins"}
             ],
-            "default": "Raleway",
+            "default": "Roboto",
             "label": "Fonte"
         },
         {
@@ -349,8 +349,8 @@
                { "value": "4", "label": "Grande"},
                { "value": "5", "label": "Muito Grande"}
             ],
-            "default": "3",
-            "label": "Tamanho da Fonte"
+            "default": "2",
+            "label": "Tamanho da fonte"
         },
         {
           "type": "header",
@@ -471,7 +471,7 @@
           "id": "cta-type",
           "options": [
             { "value": "checkout", "label": "Checkout"},
-            { "value": "cart", "label": "Carrinho"},
+            { "value": "barcode", "label": "Link no barcode"},
             { "value": "link", "label": "Link"}
           ],
           "default": "checkout",
@@ -695,30 +695,6 @@
               "id": "font-color",
               "label": "Cor da Fonte",
               "default": "#000000"
-        },
-        {
-           "type": "select",
-           "id": "font-weight",
-           "options": [
-              { "value": "300", "label": "Fino"},
-              { "value": "400", "label": "Normal"},
-              { "value": "600", "label": "Negrito"},
-              { "value": "900", "label": "Extra Negrito"}
-           ],
-           "default": "400",
-           "label": "Peso da Fonte"
-        },
-        {
-            "type": "select",
-            "id": "font-size",
-            "options": [
-               { "value": "1", "label": "Pequeno"},
-               { "value": "1.25", "label": "Médio"},
-               { "value": "1.5", "label": "Grande"},
-               { "value": "2", "label": "Muito Grande"}
-            ],
-            "default": "1",
-            "label": "Tamanho da Fonte"
         },
         {
            "type": "select",
