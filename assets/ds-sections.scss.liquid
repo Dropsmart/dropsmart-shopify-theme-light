@@ -435,8 +435,10 @@ main#main {
     .flex {
       display: flex;
       flex-direction: row;
+      position: relative;
+
       @media (max-width: 768px) {
-          flex-direction: column-reverse;
+        flex-direction: column;
       }
       
       > div {
@@ -663,7 +665,6 @@ main#main {
     }
 
   .component-product {
-     margin-top: $default-spacing * 2px !important;
      overflow: hidden;
      display: table !important;
      height: auto;
@@ -682,16 +683,20 @@ main#main {
       margin: 0 !important;
       margin-bottom: $default-spacing * 4px !important;
     }
-     
-    &.active {
-      transform: scale(1.025);
-      @media (max-width: 768px) {
-        transform: scale(1);
-      }
-    }
 
-    .ProductForm {
-      margin-top: 0px;
+    .best-deal {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      h4 {
+        margin: $default-spacing * 2px 0;
+        margin-bottom:  $default-spacing * 2px !important;
+      }
+      @media (max-width: 768px) {
+        font-size: 0.75em;
+      }
     }
     
     .image-wrapper {
@@ -700,25 +705,7 @@ main#main {
       justify-content: center;
 
       @media (max-width: 768px) {
-        margin-top: $default-spacing * 2px;
-        width: 50%;
-        margin: 0 auto;
-      }
-
-      .best-deal {
-        position: relative;
-        display: flex;
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        h4 {
-          margin: $default-spacing * 2px 0;
-          margin-bottom:  $default-spacing * 2px !important;
-        }
-        @media (max-width: 768px) {
-          font-size: 0.75em;
-        }
+        max-width: 35%;
       }
 
       figure {
@@ -765,8 +752,6 @@ main#main {
       }
       @media (max-width: 768px) {
         padding: $default-spacing * 2px;
-        text-align: left;
-        align-items: flex-end;
       }
     }
 
@@ -787,12 +772,6 @@ main#main {
       }
     }
 
-    .paragraph {
-      p {
-        color: inherit !important;
-      }
-    }
-
     .product-info {
       padding: $default-spacing * 1px $default-spacing * 4px;
       padding-top: $default-spacing * 2px;
@@ -802,10 +781,15 @@ main#main {
     }
     .component-cta {
       margin: $default-spacing * 4px 0;
+      font-size: 1em;
+      &.cart-button {
+        @media (max-width: 768px) {
+          padding: 4px $default-spacing * 1px 0px;
+          padding-top: 4px !important;
+        }
+      }
       @media (max-width: 768px) {
-        margin: 0px 0 0 $default-spacing * 2px;
-        padding: 4px $default-spacing * 1px 0px;
-        padding-top: 4px !important;
+        margin: $default-spacing * 1px;
       }
     }
   }
