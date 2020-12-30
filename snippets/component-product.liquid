@@ -9,7 +9,11 @@
       {% if section.settings.has-image %}
         <div class="image-wrapper flex-column">
           {% if isBest == 1 %}
-            <div class="best-deal mobile-hide" style="border-top-left-radius: {{section.settings.border-radius}}px; border-top-right-radius: {{section.settings.border-radius}}px; background-color: {{section.settings.best-deal-background-color}};">
+            <div class="best-deal mobile-hide" style="
+              border-top-left-radius: {{section.settings.border-radius}}px;
+              border-top-right-radius: {{section.settings.border-radius}}px;
+              background-color: {{section.settings.best-deal-background-color}};
+            ">
               {%- include 'component-h4', 
                 fontColor: section.settings.best-deal-font-color, 
                 fontSize: section.settings.best-deal-font-size, 
@@ -31,9 +35,11 @@
         </div>
       {% endif %}
 
-      <div style="width: 100%; background-color: {{section.settings.primary-background-color}}; 
-                {% if isBest == 1 %} background-color: {{section.settings.best-deal-background-color}}; {% endif %}
-                border-radius: {{section.settings.border-radius}}px; 
+      <div style="
+          width: 100%; 
+          background-color: {{section.settings.primary-background-color}}; 
+          {% if isBest == 1 %} background-color: {{section.settings.best-deal-background-color}}; {% endif %}
+          border-radius: {{section.settings.border-radius}}px; 
       ">
         {% if isBest == 1 %}
           {%- assign titleFontColor = section.settings.bd-title-font-color -%}
@@ -72,7 +78,8 @@
         {% endif %}
 
         <div class="price-tag flex flex-column justify-center mobile-flex-row" style="
-            background-color: {{section.settings.secondary-background-color}};
+            background-color: {{section.settings.primary-background-color}}; 
+            {% if isBest == 1 %} background-color: {{section.settings.best-deal-background-color}}; {% endif %}
             border-bottom-right-radius: {{section.settings.border-radius}}px;
             border-bottom-left-radius: {{section.settings.border-radius}}px;
           ">
@@ -150,7 +157,15 @@
                 borderRadius: section.settings.cta-border-radius
               -%}
             </div>
-            <button type="submit" class="grow-0 component-cta desktop-hide font-{{section.settings.cta-font}} justify-{{align}}" style="color:{{ctaBackgroundColor}};background-color: {{section.settings.primary-background-color}}; border: 2px solid {{ctaBackgroundColor}};border-radius: {{section.settings.cta-border-radius}}" {% if selected_variant.available %}data-action="add-to-cart"{% else %}disabled="disabled"{% endif %}
+            <button 
+              type="submit" 
+              class="grow-0 component-cta desktop-hide font-{{section.settings.cta-font}} justify-{{align}}" 
+              style="
+                color:{{ctaBackgroundColor}};
+                background-color: {{section.settings.primary-background-color}}; 
+                border: 2px solid {{ctaBackgroundColor}};
+                border-radius: {{section.settings.cta-border-radius}}" 
+              {% if selected_variant.available %}data-action="add-to-cart"{% else %}disabled="disabled"{% endif %}
             >
               <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.9999 17.2883L15.8547 4.39264C15.8302 4.10634 15.5889 3.88957 15.3067 3.88957H12.9509C12.9181 1.73824 11.1594 0 8.99994 0C6.84043 0 5.08174 1.73824 5.04902 3.88957H2.69319C2.40689 3.88957 2.16967 4.10634 2.14513 4.39264L0.99994 17.2883C0.99994 17.3047 0.99585 17.3211 0.99585 17.3374C0.99585 18.8057 2.34145 20 3.99789 20H14.002C15.6584 20 17.004 18.8057 17.004 17.3374C17.004 17.3211 17.004 17.3047 16.9999 17.2883ZM8.99994 1.10429C10.55 1.10429 11.8138 2.34765 11.8466 3.88957H6.15331C6.18603 2.34765 7.44984 1.10429 8.99994 1.10429ZM14.002 18.8957H3.99789C2.95904 18.8957 2.1165 18.2086 2.10014 17.362L3.19626 4.99795H5.04493V6.67485C5.04493 6.9816 5.29033 7.22699 5.59708 7.22699C5.90382 7.22699 6.14922 6.9816 6.14922 6.67485V4.99795H11.8466V6.67485C11.8466 6.9816 12.092 7.22699 12.3987 7.22699C12.7055 7.22699 12.9509 6.9816 12.9509 6.67485V4.99795H14.7995L15.8997 17.362C15.8834 18.2086 15.0367 18.8957 14.002 18.8957Z" fill="{{ctaBackgroundColor}}"/>
