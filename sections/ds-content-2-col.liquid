@@ -6,7 +6,7 @@
       background-image: url('{{section.settings.background-image | img_url: 'master'}}')
     {% endif %}
     ;"
- class="lp-content"
+  class="lp-content {% if section.settings.reverse-on-mobile %}mobile-reverse{% endif %}"
 >
   <div class="Container {{section.settings.padding}} {{section.settings.no-padding}}"
     style="align-self: {{section.settings.vertical-align-content}};"
@@ -101,6 +101,12 @@
           "type": "checkbox",
           "label": "Usar Imagem de Fundo",
           "default": false
+    },
+    {
+      "id": "reverse-on-mobile",
+      "type": "checkbox",
+      "label": "Ordem reversa no dispositível móvel",
+      "default": false
     },
     {
       "id": "background-image",
@@ -318,11 +324,16 @@
       "type": "content-image",
       "name": "Content Image",
       "settings" : [
-          {
-              "id": "content-image",
-              "type": "image_picker",
-              "label": "Imagem"
-          }
+        {
+          "id": "content-image",
+          "type": "image_picker",
+          "label": "Imagem"
+        },
+        {
+          "id": "mobile-content-image",
+          "type": "image_picker",
+          "label": "Imagem dispositívo móvel"
+        }
       ]
     },
 
