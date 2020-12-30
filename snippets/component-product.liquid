@@ -38,15 +38,15 @@
       <div style="
           width: 100%; 
           background-color: {{section.settings.primary-background-color}}; 
-          {% if isBest == 1 %} background-color: {{section.settings.best-deal-background-color}}; {% endif %}
+          {% if isBest == 1 %} background-color: {{section.settings.best-deal-primary-background-color}}; {% endif %}
           border-radius: {{section.settings.border-radius}}px; 
       ">
         {% if isBest == 1 %}
           {%- assign titleFontColor = section.settings.bd-title-font-color -%}
-          {%- assign titleBackgroundColor = section.settings.bd-title-background-color -%}
+          {%- assign titleBackgroundColor = section.settings.best-deal-primary-background-color -%}
         {% else %}
           {%- assign titleFontColor = section.settings.title-font-color -%}
-          {%- assign titleBackgroundColor = section.settings.title-background-color -%}
+          {%- assign titleBackgroundColor = section.settings.primary-background-color -%}
         {% endif %}
         <div class="title-wrapper" style="background-color: {{titleBackgroundColor}}">
           {%- include 'component-h2', 
@@ -63,10 +63,10 @@
           <div class="product-info {% if section.settings.show-description == false %} mobile-hide {% endif %}">
             {% if isBest == 1 %}
               {%- assign descriptionFontColor = section.settings.bd-description-font-color -%}
-              {%- assign descriptionBackgroundColor = section.settings.bd-description-background-color -%}
+              {%- assign descriptionBackgroundColor = section.settings.best-deal-primary-background-color -%}
             {% else %}
               {%- assign descriptionFontColor = section.settings.description-font-color -%}
-              {%- assign descriptionBackgroundColor = section.settings.description-background-color -%}
+              {%- assign descriptionBackgroundColor = section.settings.primary-background-color -%}
             {% endif %}
             {%- include 'component-paragraph', 
               fontColor: descriptionFontColor, 
@@ -77,9 +77,9 @@
           </div>
         {% endif %}
 
-        <div class="price-tag flex flex-column justify-center mobile-flex-row" style="
+        <div class="price-tag flex flex-column justify-center" style="
             background-color: {{section.settings.primary-background-color}}; 
-            {% if isBest == 1 %} background-color: {{section.settings.best-deal-background-color}}; {% endif %}
+            {% if isBest == 1 %} background-color: {{section.settings.best-deal-primary-background-color}}; {% endif %}
             border-bottom-right-radius: {{section.settings.border-radius}}px;
             border-bottom-left-radius: {{section.settings.border-radius}}px;
           ">
@@ -88,10 +88,10 @@
             {% if section.settings.has-discount %}
               {% if isBest == 1 %}
                 {%- assign discountFontColor = section.settings.bd-discount-font-color -%}
-                {%- assign discountBackgroundColor = section.settings.bd-discount-background-color -%}
+                {%- assign discountBackgroundColor = section.settings.best-deal-primary-background-color -%}
               {% else %}
                 {%- assign discountFontColor = section.settings.discount-font-color -%}
-                {%- assign discountBackgroundColor = section.settings.discount-background-color -%}
+                {%- assign discountBackgroundColor = section.settings.primary-background-color -%}
               {% endif %}
 
               {%- assign discountPrice = product.compare_at_price_max | minus: product.price %}
@@ -120,10 +120,10 @@
               <span>
                 {% if isBest == 1 %}
                   {%- assign priceFontColor = section.settings.bd-price-font-color -%}
-                  {%- assign priceBackgroundColor = section.settings.bd-price-background-color -%}
+                  {%- assign priceBackgroundColor = section.settings.best-deal-primary-background-color -%}
                 {% else %}
                   {%- assign priceFontColor = section.settings.price-font-color -%}
-                  {%- assign priceBackgroundColor = section.settings.price-background-color -%}
+                  {%- assign priceBackgroundColor = section.settings.primary-background-color -%}
                 {% endif %}
                 {%- include 'component-h2', 
                   fontColor: priceFontColor, 

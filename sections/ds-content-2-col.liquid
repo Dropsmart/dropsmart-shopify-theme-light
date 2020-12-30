@@ -57,7 +57,7 @@
         {% endfor %}
       </div>
     </div>
-    <div class="features flex flex-{{section.settings.features-direction}} justify-{{section.settings.align-features}}">
+    <div class="features flex-column mobile-flex-row justify-{{section.settings.align-features}}">
       {% for block in section.blocks %}
         {% case block.type %}
       
@@ -403,7 +403,7 @@
             "id": "description-text",
             "type": "richtext",
             "label": "Descrição",
-            "default": "<p>Lorem ipsum, lorem ipsum!<p>"
+            "default": "<p>Lorem ipsum<p>"
           },
           {
              "type": "select",
@@ -586,7 +586,7 @@
         },
         {
            "type": "select",
-           "id": "font",
+           "id": "font-family",
            "options": [
                 { "value": "Roboto", "label": "Roboto"},
                 { "value": "Cairo", "label": "Cairo"},

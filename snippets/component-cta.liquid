@@ -1,7 +1,7 @@
 <a  
   style="font-size: {{fontSize}}em; color:{{fontColor}};border-radius: {{borderRadius}}; background-color:{{backgroundColor}}; border: 2px solid {{backgroundColor}};"
   class="component-cta font-{{ fontFamily }} justify-{{align}}" 
-  href="{{ link}}"
+  href="{{link}}"
   onclick="{% if onclick != empty %} ctaFired {% else %} {{onclick}} {% endif %}" 
 >
   {{ text}}

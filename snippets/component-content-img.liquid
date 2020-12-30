@@ -1,8 +1,10 @@
 <div class="image">
   <figure>
-    <img class="content lazyload mobile-hide" src="{{ block.settings.content-image | img_url: 'master' }}"
+    <img class="lazyload {% if block.settings.mobile-content-image != empty %} mobile-hide {% endif %}" src="{{ block.settings.content-image | img_url: 'master' }}"
       data-src="{{ block.settings.content-image | img_url: 'master' }} " alt="Component Content Image" />
-    <img class="content lazyload desktop-hide" src="{{ block.settings.mobile-content-image | img_url: 'master' }}"
+    {% if block.settings.mobile-content-image != empty %}
+    <img class="lazyload desktop-hide" src="{{ block.settings.mobile-content-image | img_url: 'master' }}"
       data-src="{{ block.settings.mobile-content-image | img_url: 'master' }} " alt="Component Content Image" />
+    {% endif %}
   </figure>
 </div>
