@@ -1,0 +1,49 @@
+<div
+  style="
+    background: {{block.settings.background-color}};
+    border-radius: {{block.settings.border-radius}};
+  "
+ class="lp-content flex component-feature regular-small no-padding {{section.settings.features-limit}} flex-column mobile-flex-row isCard {% if block.settings.has-shadow %} shadow {% endif %}"
+> 
+  {% if block.settings.icon-image != empty %}
+  <div class="flex image-wrapper grow-0 justify-center align-items-{{block.settings.image-align}}">
+    <img class="mobile-hide" style="
+        width: auto;
+        min-height: {{block.settings.icon-size}}px;
+        max-height: {{block.settings.icon-size}}px;
+    " src="{{ block.settings.icon-image | img_url: 'medium'}}" />
+    <img class="desktop-hide" style="
+        display: flex !important;
+        height: auto;
+        min-width: {{block.settings.mobile-icon-size}}px;
+        max-width: {{block.settings.mobile-icon-size}}px;
+    " src="{{ block.settings.mobile-icon-image | img_url: 'medium'}}" />
+  </div>
+  {% endif %}
+  {% if block.settings.text != empty or block.settings.description-text != empty %}
+    <div class="content flex justify-{{block.settings.image-align}}">
+      {% if block.settings.text != empty %}
+        {%- include 'component-h3', 
+          fontColor: block.settings.font-color, 
+          backgroundColor: block.settings.background-color,
+          fontSize: block.settings.font-size, 
+          fontFamily: block.settings.font-family, 
+          align: block.settings.align,
+          fontWeight: block.settings.font-weight,
+          text: block.settings.text
+        -%}
+      {% endif %}
+      {% if block.settings.description-text != empty %}
+        {%- include 'component-paragraph', 
+          fontColor: block.settings.description-font-color, 
+          backgroundColor: block.settings.description-background-color,
+          fontSize: block.settings.description-font-size, 
+          fontFamily: block.settings.description-font-family, 
+          align: block.settings.description-align,
+          fontWeight: block.settings.description-font-weight,
+          text: block.settings.description-text
+        -%}
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

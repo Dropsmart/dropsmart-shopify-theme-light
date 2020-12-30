@@ -57,6 +57,16 @@
         {% endfor %}
       </div>
     </div>
+    <div class="features flex flex-{{section.settings.features-direction}} justify-{{section.settings.align-features}}">
+      {% for block in section.blocks %}
+        {% case block.type %}
+      
+          {% when 'feature' %}
+              {% include 'component-feature' %}
+
+        {% endcase %}
+      {% endfor %}
+    </div>
   </div>
 </div>
 
@@ -248,6 +258,209 @@
            "default": "600",
            "label": "Peso da Fonte"
         }
+      ]
+    },
+
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+          {
+            "id": "has-shadow",
+            "type": "checkbox",
+            "label": "Sombra",
+            "default": false
+          },
+          {
+            "id": "border-radius",
+            "type": "text",
+            "label": "Borda arredondada",
+            "default": "0px"
+          },
+          {
+            "id": "background-color",
+            "type": "color",
+            "label": "Cor de fundo",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "font-color",
+            "label": "Cor da fonte",
+            "default": "#000"
+          },
+          {
+            "type": "header",
+            "content": "Ícone"
+          },
+          {
+              "id": "icon-image",
+              "type": "image_picker",
+              "label": "Imagem do Ícone"
+          },
+          {
+              "id": "mobile-icon-image",
+              "type": "image_picker",
+              "label": "Imagem do Ícone no dispositivo Móvel"
+          },
+          {
+             "type": "select",
+             "id": "image-align",
+             "options": [
+                { "value": "center", "label": "Centralizado"},
+                { "value": "left", "label": "Esquerda"},
+                { "value": "right", "label": "Direita"}
+             ],
+             "default": "center",
+             "label": "Alinhamento do ícone"
+          },
+          {
+            "type": "select",
+            "id": "icon-size",
+            "options": [
+              { "value": "64", "label": "pequeno"},
+              { "value": "96", "label": "médio"},
+              { "value": "128", "label": "grande"},
+            ],
+            "default": "96",
+            "label": "Tamanho do ícone"
+          },
+          {
+            "type": "select",
+            "id": "mobile-icon-size",
+            "options": [
+              { "value": "32", "label": "pequeno"},
+              { "value": "64", "label": "médio"},
+              { "value": "96", "label": "grande"}
+            ],
+            "default": "64",
+            "label": "Tamanho do ícone no dispositivo móvel"
+          },
+          {
+            "type": "header",
+            "content": "Título"
+          },
+          {
+            "id": "text",
+            "type": "text",
+            "label": "Título"
+          },
+          {
+            "type": "select",
+            "id": "font-size",
+            "options": [
+               { "value": "1", "label": "Pequeno"},
+               { "value": "1.25", "label": "Médio"},
+               { "value": "1.5", "label": "Grande"},
+               { "value": "2", "label": "Muito Grande"}
+            ],
+            "default": "1.5",
+            "label": "Tamanho da fonte"
+          },
+          {
+            "type": "select",
+            "id": "font-family",
+            "options": [
+              { "value": "Roboto", "label": "Roboto"},
+              { "value": "Cairo", "label": "Cairo"},
+              { "value": "Raleway", "label": "Raleway"},
+              { "value": "Ubuntu", "label": "Ubuntu"},
+              { "value": "Titillium", "label": "Titillium Web"},
+              { "value": "Museo", "label": "Museo"},
+              { "value": "Poppins", "label": "Poppins"}
+            ],
+            "default": "Raleway",
+            "label": "Fonte"
+          },
+          {
+             "type": "select",
+             "id": "align",
+             "options": [
+                { "value": "center", "label": "Centralizado"},
+                { "value": "left", "label": "Esquerda"},
+                { "value": "right", "label": "Direita"}
+             ],
+             "default": "center",
+             "label": "Alinhamento"
+          },
+          {
+             "type": "select",
+             "id": "font-weight",
+             "options": [
+                { "value": "300", "label": "300"},
+                { "value": "400", "label": "400"},
+                { "value": "600", "label": "600"},
+                { "value": "900", "label": "900"}
+             ],
+             "default": "400",
+             "label": "Peso da Fonte"
+          },
+          {
+            "type": "header",
+            "content": "Descrição"
+          },
+          {
+            "id": "description-text",
+            "type": "richtext",
+            "label": "Descrição",
+            "default": "<p>Lorem ipsum, lorem ipsum!<p>"
+          },
+          {
+             "type": "select",
+             "id": "description-font-family",
+             "options": [
+                { "value": "Roboto", "label": "Roboto"},
+                { "value": "Cairo", "label": "Cairo"},
+                { "value": "Raleway", "label": "Raleway"},
+                { "value": "Ubuntu", "label": "Ubuntu"},
+                { "value": "Titillium", "label": "Titillium Web"},
+                { "value": "Museo", "label": "Museo"},
+                { "value": "Poppins", "label": "Poppins"}
+             ],
+             "default": "Cairo",
+             "label": "Fonte"
+          },
+          {
+             "type": "select",
+             "id": "description-align",
+             "options": [
+                { "value": "center", "label": "Centralizado"},
+                { "value": "left", "label": "Esquerda"},
+                { "value": "right", "label": "Direita"}
+             ],
+             "default": "center",
+             "label": "Alinhamento"
+          },
+          {
+            "type": "color",
+            "id": "description-font-color",
+            "label": "Cor da Fonte",
+            "default": "#000000"
+          },
+          {
+             "type": "select",
+             "id": "description-font-weight",
+             "options": [
+                { "value": "300", "label": "300"},
+                { "value": "400", "label": "400"},
+                { "value": "600", "label": "600"},
+                { "value": "900", "label": "900"}
+             ],
+             "default": "400",
+             "label": "Peso da Fonte"
+          },
+          {
+              "type": "select",
+              "id": "description-font-size",
+              "options": [
+                 { "value": "0.5", "label": "Small"},
+                 { "value": "0.75", "label": "Medium"},
+                 { "value": "1", "label": "Large"},
+                 { "value": "1.5", "label": "Extra Large"}
+              ],
+              "default": "1.5",
+              "label": "Tamanho da Fonte"
+          }
       ]
     },
 

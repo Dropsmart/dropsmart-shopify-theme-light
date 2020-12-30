@@ -9,7 +9,11 @@
       {% if section.settings.has-image %}
         <div class="image-wrapper flex-column">
           {% if isBest == 1 %}
-            <div class="best-deal mobile-hide" style="border-top-left-radius: {{section.settings.border-radius}}px; border-top-right-radius: {{section.settings.border-radius}}px; background-color: {{section.settings.best-deal-background-color}};">
+            <div class="best-deal mobile-hide" style="
+              border-top-left-radius: {{section.settings.border-radius}}px;
+              border-top-right-radius: {{section.settings.border-radius}}px;
+              background-color: {{section.settings.best-deal-background-color}};
+            ">
               {%- include 'component-h4', 
                 fontColor: section.settings.best-deal-font-color, 
                 fontSize: section.settings.best-deal-font-size, 
@@ -31,9 +35,11 @@
         </div>
       {% endif %}
 
-      <div style="width: 100%; background-color: {{section.settings.primary-background-color}}; 
-                {% if isBest == 1 %} background-color: {{section.settings.best-deal-background-color}}; {% endif %}
-                border-radius: {{section.settings.border-radius}}px; 
+      <div style="
+          width: 100%; 
+          background-color: {{section.settings.primary-background-color}}; 
+          {% if isBest == 1 %} background-color: {{section.settings.best-deal-background-color}}; {% endif %}
+          border-radius: {{section.settings.border-radius}}px; 
       ">
         {% if isBest == 1 %}
           {%- assign titleFontColor = section.settings.bd-title-font-color -%}
@@ -72,7 +78,8 @@
         {% endif %}
 
         <div class="price-tag flex flex-column justify-center mobile-flex-row" style="
-            background-color: {{section.settings.secondary-background-color}};
+            background-color: {{section.settings.primary-background-color}}; 
+            {% if isBest == 1 %} background-color: {{section.settings.best-deal-background-color}}; {% endif %}
             border-bottom-right-radius: {{section.settings.border-radius}}px;
             border-bottom-left-radius: {{section.settings.border-radius}}px;
           ">
@@ -149,7 +156,7 @@
               borderRadius: section.settings.cta-border-radius
               -%}
           {% elsif section.settings.cta-type == 'checkout' %}
-          {%- assign link = '' | append: '/cart' | append: product.id | append: ':1' %}
+          {%- assign link = '' | append: '/cart/' | append: product.id | append: ':1' %}
             {% capture onclick %}comboChosen({{product.title}}, {{price}}){% endcapture %}
             {% if isBest == 1 %}
               {%- assign ctaFontColor = section.settings.bd-cta-font-color -%}

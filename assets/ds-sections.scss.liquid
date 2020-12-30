@@ -117,10 +117,12 @@ main#main {
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
+  background-image: url('{{settings.background_image | img_url: 'master'}}');
   background-repeat: no-repeat; 
   background-position: top center;
   background-size: auto;
   @media (max-width: 768px) {
+    background-image: url('{{settings.background_image_mobile | img_url: 'master'}}');
     background-position: top center;
   }
 
@@ -514,78 +516,121 @@ main#main {
    /* END - FLEX */
 
    /* SECTIONS */
-    .lp-content {
-        height: 100%;
-        .content {
-          padding: 0;
-          margin: 0;
-          
-          h1, h2, h3, paragraph {
-            margin-bottom: $default-spacing * 4px;
-            
-          }
-        }
+  .lp-content {
+    height: 100%;
+    .content {
+      padding: 0;
+      margin: 0;
+      
+      h1, h2, h3, paragraph {
+        margin-bottom: $default-spacing * 4px;
+        
+      }
+    }
 
-        .paragraph {
-          p {
-            color: inherit !important;
+    .paragraph {
+      p {
+        color: inherit !important;
+      }
+    }
+
+    .features {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      &.flex-column {
+        .component-feature {
+          align-self: flex-start;
+          padding: $default-spacing * 4px $default-spacing * 4px $default-spacing * 2px !important;
+          margin-bottom: $default-spacing * 2px !important;
+          &.shadow {
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1), 0px 4px 8px 0px rgba(0,0,0,0.15), 0px 0px 4px 0px rgba(0,0,0,0.05);
+          }
+          img {
+            margin-left: 0 !important;
+          }
+          &.mobile-flex-row {
+            @media (max-width: 768px) {
+              align-self: center;
+            }
           }
         }
       }
+      
+      &.flex-row {
+        .component-feature {
+          align-self: center;
+          margin: 0 $default-spacing * 2px $default-spacing * 2px;
+          padding: $default-spacing * 4px $default-spacing * 4px $default-spacing * 2px !important;
+          margin-bottom: $default-spacing * 2px !important;
+          &.shadow {
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1), 0px 4px 8px 0px rgba(0,0,0,0.15), 0px 0px 4px 0px rgba(0,0,0,0.05);
+          }
+          &.mobile-flex-column {
+            @media (max-width: 768px) {
+              align-self: flex-start;
+            }
+          }
+        }
+      }
+      
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+    }
+  }
     
+  .lp-header {
+    header {
+      width: 100%;
+      display: flex;
+      padding-top: 0;
 
-
-    .lp-header {
-
-      header {
-        width: 100%;
-        display: flex;
-        padding-top: 0;
-
-        img.brand {
+      img.brand {
+        padding: 0;
+        max-width: 200px;
+        max-height: 80px;
+        z-index: 3;
+        align-self: center;
+        @media (max-width: 768px) {
+          transform: scale(0.75);
+          transform-origin: left;
+        }
+      }
+      
+      nav {
+        padding: 0;
+        align-self: center;
+        @media (max-width: 768px) {
+          align-self: self-start;
+        }
+      
+        .navbar-toggler {
           padding: 0;
-          max-width: 200px;
-          max-height: 80px;
-          z-index: 3;
-          align-self: center;
-          @media (max-width: 768px) {
-            transform: scale(0.75);
-            transform-origin: left;
-          }
+          z-index: 2;
+        }
+      }
+
+      .Container {
+        justify-content: space-between;
+        @media (max-width: 768px) {
+          flex-direction: row;
+          padding: $default-spacing * 6px $default-spacing * 4px;
+          padding-bottom: $default-spacing * 2px !important;
         }
         
-        nav {
-          padding: 0;
-          align-self: center;
-          @media (max-width: 768px) {
-            align-self: self-start;
-          }
-        
-          .navbar-toggler {
-            padding: 0;
-            z-index: 2;
-          }
-        }
-
-        .Container {
-          justify-content: space-between;
-          @media (max-width: 768px) {
-            flex-direction: row;
-            padding: $default-spacing * 6px $default-spacing * 4px;
-            padding-bottom: $default-spacing * 2px !important;
-          }
-          
-          a {
-            font-size: 1.25em;
-            margin-bottom: $default-spacing * 4px;
-          }
+        a {
+          font-size: 1.25em;
+          margin-bottom: $default-spacing * 4px;
         }
       }
     }
+  }
       
-   /* END SECTIONS */
+  /* END SECTIONS */
 
-   /* COMPONENTS */
+  /* COMPONENTS */
 
     .component-cta {
       display: inline-block;
