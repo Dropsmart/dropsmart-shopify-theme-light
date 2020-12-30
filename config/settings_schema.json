@@ -44,6 +44,31 @@
     ]
   },
   {
+    "name": "Background",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": {
+          "en": "Website Background",
+          "pt-BR": "Fundo do site"
+        }
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image_mobile",
+        "label": {
+          "en": "Website Background Mobile",
+          "pt-BR": "Fundo do site em dispositivos móveis"
+        }
+      }
+    ]
+  },
+  {
     "name": {
       "da": "Farver",
       "de": "Farben",
