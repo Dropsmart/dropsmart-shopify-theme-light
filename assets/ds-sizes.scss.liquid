@@ -1,0 +1,179 @@
+$default-spacing: 8;
+$default-font-size: 18px;
+$mobile-font-size: 14px;
+
+main#main {
+  /* SIZES */
+
+  .container-full {
+    max-width: 1280px;
+    margin: auto;
+  }
+
+  .container-medium {
+    max-width: 980px;
+    margin: auto;
+  }
+
+  .container-small {
+    max-width: 720px;
+    margin: auto;
+  }
+
+  .container-x-small {
+    max-width: 480px;
+    margin: auto;
+  }
+
+  .weight-300 {
+    font-weight: 300 !important;
+  }
+
+  .weight-400 {
+    font-weight: 400 !important;
+  }
+
+  .weight-800 {
+    font-weight: 800 !important;
+  }
+
+  .weight-900 {
+    font-weight: 900 !important;
+  }
+
+  .Container, .regular {
+    padding: $default-spacing * 16px $default-spacing * 4px;
+    padding-bottom: $default-spacing * 16px - $default-spacing * 4px;
+      
+      .content {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+      }
+      h1, h2, h3, h4, p, .component-cta, img {
+        margin-bottom: $default-spacing * 4px;
+      }
+  }
+
+  .regular {
+    padding-top: $default-spacing * 16px;
+    padding-bottom: $default-spacing * 16px - $default-spacing * 4px;
+
+    .content, .features {
+      > div h1, > div h2, > div h3, > div h4, > span p, > .component-cta, > img, > figure img, .ProductForm__Option {
+        margin-bottom: $default-spacing * 4px;
+      }
+    }
+    @media (max-width: 768px) {
+      padding-top: $default-spacing * 8px;
+      padding-bottom: $default-spacing * 8px - $default-spacing * 4px;
+
+      .content, .features {
+        > div h1, > div h2, > div h3, > div h4, > span p, > .component-cta, > img, > figure img, .ProductForm__Option {
+          margin-bottom: $default-spacing * 4px;
+        }
+      }
+    }
+  }
+
+  .regular-large {
+    padding-top: $default-spacing * 16px;
+    padding-bottom: $default-spacing * 16px - $default-spacing * 8px;
+
+    .content, .features {
+      > div h1, > div h2, > div h3, > div h4, > span p, > .component-cta, > img, > figure img, .ProductForm__Option {
+        margin-bottom: $default-spacing * 8px;
+      }
+      .feature {
+        &:last-child {
+          margin-bottom: $default-spacing * 6px !important;
+        }
+      }
+    }
+  }
+
+  .regular-small {
+    padding-top: $default-spacing * 8px;
+    padding-bottom: $default-spacing * 8px - $default-spacing * 2px;
+
+    .content, .features {
+      > div h1, > div h2, > div h3, > div h4, > span p, > .component-cta, > img, > figure img, .ProductForm__Option {
+        margin-bottom: $default-spacing * 2px;
+      }
+    }
+    @media (max-width: 768px) {
+      padding-top: $default-spacing * 4px;
+      padding-bottom: $default-spacing * 4px - $default-spacing * 2px;
+
+      .content, .features {
+        > div h1, > div h2, > div h3, > div h4, > span p, > .component-cta, > img, > figure img, .ProductForm__Option {
+          margin-bottom: $default-spacing * 2px;
+        }
+      }
+    }
+  }
+
+  .space-around-small {
+    padding-top: $default-spacing * 8px;
+    padding-bottom: $default-spacing * 8px - $default-spacing * 4px;
+
+    .content, .features {
+      > div h1, > div h2, > div h3, > div h4, > span p, > .component-cta, > img, > figure img, .ProductForm__Option {
+        margin-bottom: $default-spacing * 4px;
+      }
+    }
+    @media (max-width: 768px) {
+      padding-top: $default-spacing * 4px;
+      padding-bottom: $default-spacing * 4px - $default-spacing * 2px;
+
+      .content, .features {
+        > div h1, > div h2, > div h3, > div h4, > span p, > .component-cta, > img, > figure img, .ProductForm__Option {
+          margin-bottom: $default-spacing * 2px;
+        }
+      }
+    }
+  }
+
+  .space-around {
+    padding-top: $default-spacing * 24px;
+    padding-bottom: $default-spacing * 24px - $default-spacing * 4px;
+
+    .content, .features {
+      > div h1, > div h2, > div h3, > div h4, > span p, > .component-cta, > img, > figure img, .ProductForm__Option {
+        margin-bottom: $default-spacing * 4px;
+      }
+    }
+  }
+
+  .space-around-large {
+    padding-top: $default-spacing * 24px;
+    padding-bottom: $default-spacing * 32px - $default-spacing * 8px;
+
+    .content, .features {
+      > div h1, > div h2, > div h3, > span p, > .component-cta, > img, > figure img, .ProductForm__Option {
+        margin-bottom: $default-spacing * 8px;
+      }
+      .feature {
+        &:last-child {
+          margin-bottom: $default-spacing * 6px !important;
+        }
+      }
+    }
+  }
+
+  .no-padding-bottom {
+    padding-bottom: 0 !important;
+  }
+
+  .no-padding-top {
+    padding-top: 0 !important;
+  }
+
+  .no-padding {
+    margin-bottom: $default-spacing * -4px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+    
+  /* END SIZES */
+}
