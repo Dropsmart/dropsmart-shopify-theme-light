@@ -29,8 +29,10 @@
 
             <div class="image">
               <img style="
-              border-top-left-radius: {{section.settings.border-radius}}px;
-              border-top-right-radius: {{section.settings.border-radius}}px;
+              {% if isBest != 1 %}
+                border-top-left-radius: {{section.settings.border-radius}}px;
+                border-top-right-radius: {{section.settings.border-radius}}px;
+              {% endif %}
             " class="content lazyload" src="{{ block.settings.content-image | img_url: 'master' }}" data-src="{{ image | img_url: 'master' }} " alt="Component Content Image" />
             </div>
 
