@@ -1,0 +1,52 @@
+$default-spacing: 8;
+$default-font-size: 18px;
+$mobile-font-size: 14px;
+
+main#main {
+  .lp-header {
+    header {
+      width: 100%;
+      display: flex;
+      padding-top: 0;
+
+      img.brand {
+        padding: 0;
+        max-width: 200px;
+        max-height: 80px;
+        z-index: 3;
+        align-self: center;
+        @media (max-width: 768px) {
+          transform: scale(0.75);
+          transform-origin: left;
+        }
+      }
+      
+      nav {
+        padding: 0;
+        align-self: center;
+        @media (max-width: 768px) {
+          align-self: self-start;
+        }
+      
+        .navbar-toggler {
+          padding: 0;
+          z-index: 2;
+        }
+      }
+
+      .Container {
+        justify-content: space-between;
+        @media (max-width: 768px) {
+          flex-direction: row;
+          padding: $default-spacing * 6px $default-spacing * 4px;
+          padding-bottom: $default-spacing * 2px !important;
+        }
+        
+        a {
+          font-size: 1.25em;
+          margin-bottom: $default-spacing * 4px;
+        }
+      }
+    }
+  }
+}

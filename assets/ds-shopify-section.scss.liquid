@@ -1,0 +1,77 @@
+$default-spacing: 8;
+$default-font-size: 18px;
+$mobile-font-size: 14px;
+
+main#main {
+  section.shopify-section {
+    margin: 0;
+    width: 50%;
+
+    &:nth-of-type(even) {
+      & > div {
+        background-repeat: no-repeat;
+        background-position: right center; 
+        background-size: contain;
+        justify-content: flex-start;
+        .Container {
+          padding-left: $default-spacing * 2px;
+          @media (max-width: 768px) {
+            padding-left: $default-spacing * 4px;
+            padding-top: $default-spacing * 4px;
+          }
+        }
+      }
+    }
+
+    &:nth-of-type(odd) {
+      & > div {
+        background-repeat: no-repeat;
+        background-position: left center; 
+        background-size: contain;
+        justify-content: flex-end;
+        .Container {
+          padding-right: $default-spacing * 2px;
+          @media (max-width: 768px) {
+            padding-right: $default-spacing * 4px;
+            padding-bottom: $default-spacing * 4px;
+          }
+        }
+      }
+    }
+
+    & > div {
+      display: flex;
+      .Container {
+        max-width: 620px;
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      &:nth-of-type(odd) {
+        & > div {
+          .Container {
+            padding-bottom: $default-spacing * 4px;
+          }
+        }
+      }
+      &:nth-of-type(even) {
+        & > div {
+          .Container {
+            padding-top: $default-spacing * 4px;
+          }
+        }
+      }
+      &:nth-child(even), &:nth-child(odd) {
+        & > div {
+          justify-content: center;
+          .Container {
+            margin: 0 auto;
+            max-width: 768px;
+          }
+        }
+      }
+    }
+  }
+}

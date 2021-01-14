@@ -1,0 +1,39 @@
+$default-spacing: 8;
+$default-font-size: 18px;
+$mobile-font-size: 14px;
+
+main#main {
+  .component-feature {
+    margin-bottom: $default-spacing * 2px !important;
+    &:last-child {
+      margin-bottom: $default-spacing * 2px !important;
+    }
+    &.flex-row {
+      span, h3 {
+       padding-right: 0 !important;
+      }
+      .image-wrapper {
+        img {
+          margin-bottom: 0 !important;
+        }
+      }
+    }
+    .image-wrapper {
+      padding: 0 $default-spacing * 2px;
+    }
+    @media (max-width: 768px) {
+      margin-bottom: $default-spacing * 2px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+  
+      p {
+        margin-bottom: $default-spacing * 2px !important;
+      }
+  
+      &.isCard {
+        min-width: 100%;
+      }
+    }
+  }
+}
