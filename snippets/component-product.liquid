@@ -28,11 +28,18 @@
             {%- assign image = product.images[0] -%}
 
             <div class="image">
+              {% if isBest == 1 %}
+              <img style="
+              border-top-left-radius: unset;
+              border-top-right-radius: unset;
+            " class="content lazyload" src="{{ block.settings.content-image | img_url: 'master' }}" data-src="{{ image | img_url: 'master' }} " alt="Component Content Image" />
+              {% else %}
               <img style="
               border-top-left-radius: {{section.settings.border-radius}}px;
               border-top-right-radius: {{section.settings.border-radius}}px;
             " class="content lazyload" src="{{ block.settings.content-image | img_url: 'master' }}" data-src="{{ image | img_url: 'master' }} " alt="Component Content Image" />
-            </div>
+            {% endif %}  
+          </div>
 
           {% endif %}
         </div>
